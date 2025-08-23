@@ -82,6 +82,16 @@ func (cf Conf) GetHttpProxyPort() int {
 	return port
 }
 
+func (cf Conf) GetHttpProxyHost() string {
+	spt := cf.HttpProxySplit()
+	host_str := strings.Split(spt[1], "/")
+	if len(host_str) < 1 {
+		panic(fmt.Errorf("HttpProxy(%s)设置不正确.例:%s", cf.HttpProxy, DEFAULT_HTTP_PROXY))
+	}
+	host := host_str[len(host_str)-1]
+	return host
+}
+
 // GetHttpProxyProtocol. get SystemProxy Inbound Protocol By HttpProxy. Only Support http and socks
 // curl --proxy socks5://127.0.0.1:30000 https://httpbin.org/get -v
 // curl --proxy http://127.0.0.1:30000 https://httpbin.org/get -v

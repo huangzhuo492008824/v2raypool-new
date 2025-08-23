@@ -129,12 +129,16 @@ func GetNodes(domain string) []byte {
 	}
 	nds.SortBySpeed()
 	activeNode := pp.GetActiveNode()
+	cf := conf.GetConf()
+	host := cf.GetHttpProxyHost()
 	var rows []map[string]any
 	for _, n := range nds {
 		isActive := false
 		if activeNode.RemoteAddr == n.RemoteAddr {
 			isActive = true
 		}
+		local_addr := fmt.Sprintf("%s://%s:%d", cf.GetHttpProxyProtocol(), host, n.LocalPort)
+		fmt.Printf("-----GetNodes---n(%+v)------\n", local_addr)
 		data := map[string]any{
 			"index":       n.Index,
 			"id":          n.Id,
@@ -143,7 +147,7 @@ func GetNodes(domain string) []byte {
 			"speed":       fmt.Sprintf("%.2f", n.Speed.Seconds()),
 			"test_url":    n.TestUrl,
 			"title":       n.Title,
-			"local_addr":  pp.GetLocalAddr(n),
+			"local_addr":  local_addr,
 			"remote_addr": n.RemoteAddr,
 			"is_running":  n.IsRunning(),
 			"is_active":   isActive,

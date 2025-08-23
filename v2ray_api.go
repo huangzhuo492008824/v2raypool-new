@@ -80,7 +80,7 @@ func (a V2rayApiClient) AddInbound(inport net.Port, intag, protocol string) erro
 		ProxySettings: serial.ToTypedMessage(proxySet),
 	}})
 	// rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:15491: connectex: No connection could be made because the target machine actively refused it."
-	fmt.Printf("---AddInbound(%s)--port(%d)--result(%s)--err(%v)--\n", intag, inport, resp, err)
+	fmt.Printf("---AddInbound(%s) -listen:(%s)--port(%d)--result(%s)--err(%v)--\n", intag, net.AnyIP, inport, resp, err)
 	return err
 }
 
