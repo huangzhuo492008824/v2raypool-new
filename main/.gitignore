@@ -1,4 +1,4 @@
-.env
+.env*
 default.env
 go.sum
 v2raypool
@@ -13,3 +13,5 @@ v2raypool
 # resource/
 resource.syso
 runtime/
+main/subscribe_data.txt_aky
+main/subscribe_data.txt_youtu
