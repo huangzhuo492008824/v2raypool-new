@@ -356,6 +356,7 @@ func (p ProxyPool) GetTestedDomainList() []string {
 	return dl
 }
 func (p *ProxyPool) InitSubscribeData() *ProxyPool {
+	fmt.Printf("-----InitSubscribeData-----p.subscribeRawData(%s)----\n", p.subscribeRawData)
 	if p.localPortStart == 0 {
 		panic("please set localPortStart")
 	}
