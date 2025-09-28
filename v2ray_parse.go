@@ -11,13 +11,18 @@ import (
 
 // ParseNodes 解析节点 Add, Ps ...
 func ParseV2rayNodes(data string) []V2rayNode {
-	fmt.Println("-----Begin--ParseV2rayNodes-------")
+	fmt.Printf("\n-----Begin--ParseV2rayNodes --data:(%s)-------\n", data)
 	sss := strings.Split(data, "\n")
 	var nds []V2rayNode
 	var err error
 	for i, d := range sss {
+		if d == "" {
+			continue
+		}
 		var n V2rayNode
 		n, err = parseNodeInfo(d)
+		fmt.Printf("\n-----Begin--ParseV2rayNodes for --d:(%s) n:(%s)-------end\n", d, n)
+
 		if err != nil {
 			fmt.Printf("\n---ParseV2rayNodesErr--(%d)--err(%v)---RAW(%s)\n", i, err, d)
 			continue
